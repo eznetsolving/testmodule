@@ -5,6 +5,7 @@
 */
 function testmodule_init() {
   drupal_flush_all_caches(); 
+  drupal_set_message(t('Clears all caches on evey page load.'), 'warning', FALSE);
 }
 
 /**
@@ -13,8 +14,8 @@ function testmodule_init() {
 function testmodule_menu() {
   $items = array();
 
-  $items('testmodule') = array(
-    'title' => t('Test Module'),
+  $items['testmodule'] = array(
+    'title' => 'Test Module',
     'page callback' => 'testmodule_page',
     'access callback' => TRUE,
   );
