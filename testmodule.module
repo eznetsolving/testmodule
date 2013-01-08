@@ -1,0 +1,27 @@
+<?php
+
+/**
+* Implements hook_init().
+*/
+function testmodule_init() {
+  drupal_flush_all_caches(); 
+}
+
+/**
+ * Implements hook_menu().
+ */ 
+function testmodule_menu() {
+  $items = array();
+
+  $items('testmodule') = array(
+    'title' => t('Test Module'),
+    'page callback' => 'testmodule_page',
+    'access callback' => TRUE,
+  );
+
+  return $items;
+}
+
+function testmodule_page() {
+  return t('Veikia');
+}

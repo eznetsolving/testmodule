@@ -1,0 +1,3 @@
+name = Test Module
+description = Testing to learn module development
+core = 7.x
