@@ -13,11 +13,17 @@ function testmodule_init() {
 function testmodule_menu() {
   $items = array();
 
-  $items('testmodule') = array(
+  $items['testmodule'] = array(
     'title' => t('Test Module'),
     'page callback' => 'testmodule_page',
     'access callback' => TRUE,
-  );
+	);
+  $items['puslapis'] = array(
+    'title' =>t('Puslapis'),
+	'page_callback' => 'testmodule_puslapis',
+	'file' => 'testmodule.inc',
+	'access callback' => TRUE,
+	);
 
   return $items;
 }
@@ -25,3 +31,52 @@ function testmodule_menu() {
 function testmodule_page() {
   return t('Veikia');
 }
+
+/**
+* Implements hook_block_info().
+*/
+
+function testmodule_block_info() {
+  $blocks = array();
+  
+  $blocks['pirmas_blokas'] = array(
+    'info' => t('Pirmas blokas'),
+    'region' => 'content',
+	'pages' => array('puslapis'),
+  );
+  $blocks['antras_blokas'] = array(
+    'info' => t('Antras blokas'),
+    'region' => 'content',
+	'pages' => array('puslapis'),
+  );
+  
+  return $blocks;
+}
+
+/**
+* Implements hook_block_view().
+*/
+
+function testmodule_block_view($delta = '') {
+  $block = array();
+    switch ($delta) {
+    case 'pirmas_blokas':
+  $block['subject'] = t('Pirmas blokas');
+  $block['content'] = array(
+  '#title' => t('Pirmas blokas'),
+  '#theme' => 'pirmas_blokas_tema', 
+);
+    break;
+   }
+  return $block;
+}
+
+function pirmas_blokas_tema() {
+  $theme_args = array(
+	  'items' => array('pirmas blokelis', 'antras blokelis', 'trecias blokelis',),
+	  'type' => 'ul',
+	  );
+  $content = theme('item_list', $theme_args);
+  return $content;
+}	
+	
