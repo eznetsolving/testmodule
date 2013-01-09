@@ -15,13 +15,17 @@ function testmodule_menu() {
   $items = array();
 
   $items['testmodule'] = array(
+<<<<<<< HEAD
+    'title' => t('Test Module'),
+=======
     'title' => 'Test Module',
+>>>>>>> e2ca310b7c5395e749d88efe9ea6282c72dad940
     'page callback' => 'testmodule_page',
     'access callback' => TRUE,
 	);
   $items['puslapis'] = array(
     'title' =>t('Puslapis'),
-	'page callback' => 'testmodule_puslapis',
+	'page_callback' => 'testmodule_puslapis',
 	'file' => 'testmodule.inc',
 	'access callback' => TRUE,
 	);
@@ -31,6 +35,7 @@ function testmodule_menu() {
 
 function testmodule_page() {
   return t('Veikia');
+<<<<<<< HEAD
 }
 
 /**
@@ -43,18 +48,12 @@ function testmodule_block_info() {
   $blocks['pirmas_blokas'] = array(
     'info' => t('Pirmas blokas'),
     'region' => 'content',
-	'visibility' => BLOCK_VISIBILITY_LISTED,
-	'pages' => 'puslapis',
-	'status' => 1,
-	'cache' => DRUPAL_NO_CACHE,
+	'pages' => array('puslapis'),
   );
   $blocks['antras_blokas'] = array(
     'info' => t('Antras blokas'),
     'region' => 'content',
-	//'visibility' => BLOCK_VISIBILITY_LISTED,
-	//'pages' => 'puslapis',
-	'status' => 1,
-	'cache' => DRUPAL_NO_CACHE,
+	'pages' => array('puslapis'),
   );
   
   return $blocks;
@@ -66,18 +65,14 @@ function testmodule_block_info() {
 
 function testmodule_block_view($delta = '') {
   $block = array();
-  switch ($delta) {
+    switch ($delta) {
     case 'pirmas_blokas':
-	  $block['subject'] = t('Pirmas blokas');
-	  $block['content'] = array(
-	  '#title' => t('Pirmas blokas'),
-	  '#theme' => 'pirmas_blokas_tema', 
-	  );
-	  break;
-    case 'antras_blokas':
-	  $block['subject'] = t('Antras blokas');
-	  $block['content'] = t('shitas veikia!');
-	  break;
+  $block['subject'] = t('Pirmas blokas');
+  $block['content'] = array(
+  '#title' => t('Pirmas blokas'),
+  '#theme' => 'pirmas_blokas_tema', 
+);
+    break;
    }
   return $block;
 }
@@ -91,3 +86,6 @@ function pirmas_blokas_tema() {
   return $content;
 }	
 	
+=======
+}
+>>>>>>> e2ca310b7c5395e749d88efe9ea6282c72dad940

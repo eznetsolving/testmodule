@@ -1,3 +1,4 @@
-﻿function testmodule_puslapis() {
-  echo 'Veikia net labai';
+﻿<?php
+function testmodule_puslapis() {
+  return t('Veikia net labai');
 }
