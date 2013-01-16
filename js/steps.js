@@ -17,19 +17,19 @@ Drupal.behaviors.testmoduleSteps = {
     $.getJSON(api_server+"/products.json?callback=?", "apiversion=5.3&passkey=" + api_key + "&filter=id:21056&stats=reviews",
       function(json){
         jQuery.each(json.Results, function(index, product) {
-          $("#step1").append(productOutput(product));
+          $("#step1-bv").append(productOutput(product));
         });
       });
       $.getJSON(api_server+"/products.json?callback=?", "apiversion=5.3&passkey=" + api_key + "&filter=id:21057&stats=reviews",
       function(json){
         jQuery.each(json.Results, function(index, product) {
-          $("#step2").append(productOutput(product));
+          $("#step2-bv").append(productOutput(product));
         });
       });
       $.getJSON(api_server+"/products.json?callback=?", "apiversion=5.3&passkey=" + api_key + "&filter=id:21058&stats=reviews",
       function(json){
         jQuery.each(json.Results, function(index, product) {
-          $("#step3").append(productOutput(product));
+          $("#step3-bv").append(productOutput(product));
         });
       });
   }
