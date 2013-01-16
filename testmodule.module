@@ -21,9 +21,9 @@ function testmodule_menu() {
 	);
   $items['puslapis'] = array(
     'title' =>t('Puslapis'),
-	'page callback' => 'testmodule_puslapis',
-	'file' => 'testmodule.inc',
-	'access callback' => TRUE,
+  	'page callback' => 'testmodule_puslapis',
+  	'file' => 'testmodule.inc',
+  	'access callback' => TRUE,
 	);
 
   return $items;
@@ -43,18 +43,21 @@ function testmodule_block_info() {
   $blocks['pirmas_blokas'] = array(
     'info' => t('Pirmas blokas'),
     'region' => 'content',
-	'visibility' => BLOCK_VISIBILITY_LISTED,
-	'pages' => 'puslapis',
-	'status' => 1,
-	'cache' => DRUPAL_NO_CACHE,
+  	'visibility' => BLOCK_VISIBILITY_LISTED,
+  	'pages' => 'puslapis',
+  	'status' => 1,
+  	'cache' => DRUPAL_NO_CACHE,
   );
   $blocks['antras_blokas'] = array(
     'info' => t('Antras blokas'),
     'region' => 'content',
-	//'visibility' => BLOCK_VISIBILITY_LISTED,
-	//'pages' => 'puslapis',
-	'status' => 1,
-	'cache' => DRUPAL_NO_CACHE,
+  	//'visibility' => BLOCK_VISIBILITY_LISTED,
+  	//'pages' => 'puslapis',
+  	'status' => 1,
+  	'cache' => DRUPAL_NO_CACHE,
+  );
+  $blocks['trecias_blokas'] = array(
+    'info' => t('Trecias blokas'),
   );
   
   return $blocks;
@@ -68,16 +71,19 @@ function testmodule_block_view($delta = '') {
   $block = array();
   switch ($delta) {
     case 'pirmas_blokas':
-	  $block['subject'] = t('Pirmas blokas');
-	  $block['content'] = array(
-	  '#title' => t('Pirmas blokas'),
-	  '#theme' => 'pirmas_blokas_tema', 
-	  );
-	  break;
+  	  $block['subject'] = t('Pirmas blokas');
+  	  $block['content'] = array(
+  	  '#title' => t('Pirmas blokas'),
+  	  '#theme' => 'pirmas_blokas_tema', 
+	    );
+	    break;
     case 'antras_blokas':
-	  $block['subject'] = t('Antras blokas');
-	  $block['content'] = t('shitas veikia!');
-	  break;
+  	  $block['subject'] = t('Antras blokas');
+  	  $block['content'] = t('shitas veikia!');
+	    break;
+    case 'trecias_blokas':
+      $block['subject'] = t('Trecias blokas');
+      $block['content'] = theme('testmodule_trecias_blokas');
    }
   return $block;
 }
@@ -90,4 +96,11 @@ function pirmas_blokas_tema() {
   $content = theme('item_list', $theme_args);
   return $content;
 }	
-	
+
+function testmodule_theme() {
+  return array(
+    'testmodule_trecias_blokas' => array(
+      'template' => 'testmodule-trecias-blockas',
+    ),
+  );  
+}	
